@@ -30,7 +30,6 @@ function to_check(arch)
     end
 
     local json = api.get_api_json(trojan_go_api)
-    json = json and json[1]
 
     if json == nil or json.tag_name == nil then
         return {
