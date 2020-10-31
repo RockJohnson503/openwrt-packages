@@ -17,7 +17,8 @@ local trojan = {
     remote_addr = server_host or node.address,
     remote_port = tonumber(server_port) or tonumber(node.port),
     password = {node.password},
-    log_level = tonumber(node.log),
+    log_file = node.log_file,
+    log_level = tonumber(node.log_level),
     ssl = {
         verify = (node.tls_allowInsecure ~= "1") and true or false,
         verify_hostname = true,
