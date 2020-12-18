@@ -202,7 +202,7 @@ gen_dnsmasq_items() {
 		}
 		! /^$/&&!/^#/ {
 			fail=0
-			if(! (setdns || setlist)) {printf("server=%s\n", $0) >>outf; next;}
+			if(! (setdns || setlist)) {printf("address=/%s/0.0.0.0\n", $0) >>outf; next;}
 			if(setdns) for(i in dns) printf("server=/.%s/%s\n", $0, dns[i]) >>outf;
 			if(setlist) printf("ipset=/.%s/%s\n", $0, ipsetlist) >>outf;
 		}
@@ -934,6 +934,10 @@ add_dnsmasq() {
 		[ "${USE_CHNLIST}" = "0" ] && unset fwd_dns
 		sort -u "${RULES_PATH}/direct_host" | gen_dnsmasq_items "whitelist" "${fwd_dns}" "${TMP_DNSMASQ_PATH}/00-direct_host.conf"
 		echolog "  - [$?]域名白名单(whitelist)：${fwd_dns:-默认}"
+
+		#禁止连接的列表
+		sort -u "${RULES_PATH}/deny_host" | gen_dnsmasq_items "" "" "${TMP_DNSMASQ_PATH}/00-deny_host.conf"
+		echolog "  - [$?]禁止连接列表(denylist)：默认"
 
 		#当勾选使用chnlist，仅当使用大陆白名单或回国模式
 		[ "${USE_CHNLIST}" = "1" ] && {

@@ -850,6 +850,9 @@ msgstr "备注"
 msgid "Direct List"
 msgstr "直连列表"
 
+msgid "Deny List"
+msgstr "禁连列表"
+
 msgid "Proxy List"
 msgstr "代理列表"
 
@@ -858,6 +861,9 @@ msgstr "加入的域名不走代理，对所有模式有效。且优先级最高
 
 msgid "These had been joined ip addresses will not proxy. Please input the ip address or ip address segment,every line can input only one ip address. For example: 192.168.0.0/24 or 223.5.5.5."
 msgstr "加入的IP段不走代理，对所有模式有效。且优先级最高。可输入IP地址或地址段，如：192.168.0.0/24或223.5.5.5，每个地址段一行。"
+
+msgid "Join the deny hosts list of domain names will be disable."
+msgstr "加入的域名禁止连接，对所有模式有效。且优先级最高。"
 
 msgid "These had been joined websites will use proxy. Please input the domain names of websites,every line can input only one website domain. For example: google.com."
 msgstr "加入的域名将走代理。输入网站域名，如：google.com，每个地址段一行。"
