@@ -27,10 +27,9 @@ start_instance() {
         [ "$route" = "1" ] && args='-r'
         [ "$mode" = 'dhcp' ] && address='0.0.0.0'
         [ "-$mtu" != "-" ] && mtu="-M $mtu"
-        [ "-$udp_port" != "-"] && udp_port="-p $udp_port"
         eval "$(ipcalc.sh "$ipaddr/$prefix")"
         netmask="$NETMASK"
-        /usr/bin/edge -u 0 -g 0 -d $tunname -a ${mode}:${address} -s $netmask -c $community $([ -n "$key" ] && echo -k $key) -l ${supernode}:${port} $args $mtu $udp_port
+        /usr/bin/edge -u 0 -g 0 -p $udp_port -d $tunname -a ${mode}:${address} -s $netmask -c $community $([ -n "$key" ] && echo -k $key) -l ${supernode}:${port} $args $mtu
       ;;
       supernode)
         config_get_bool enabled "$cfg" 'enabled' '0'

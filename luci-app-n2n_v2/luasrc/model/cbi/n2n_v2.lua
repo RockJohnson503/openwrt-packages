@@ -70,9 +70,9 @@ get_mask(prefix)
 prefix.optional = false
 prefix:depends("mode", "static")
 
-udp_port = s:option(ListValue, "udp_port", translate("UDP Port"))
-prefix.optional = false
-port.datatype = "port"
+udp_port = s:option(Value, "udp_port", translate("UDP Port"))
+udp_port.optional = false
+udp_port.datatype = "port"
 
 mtu = s:option(Value, "mtu", translate("MTU"))
 mtu.datatype = "range(1,1500)"
