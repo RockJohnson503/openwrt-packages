@@ -44,7 +44,7 @@ function to_check(arch)
     end
 
     local now_version = api.get_trojan_go_version()
-    local remote_version = json.tag_name:match("[^v]+")
+    local remote_version = json.tag_name:match("[^v]?%d+%.%d+%.%d+")
     local needs_update = api.compare_versions(now_version, "<", remote_version)
     local html_url, download_url
 

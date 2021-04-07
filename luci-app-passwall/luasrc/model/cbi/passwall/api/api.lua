@@ -224,14 +224,14 @@ function get_trojan_go_version(file)
         if file == get_trojan_go_path() then
             local md5 = sys.exec("echo -n $(md5sum " .. file .. " | awk '{print $1}')")
             if fs.access("/tmp/psw_" .. md5) then
-                return sys.exec("cat /tmp/psw_" .. md5)
+                return sys.exec("cat /tmp/psw_" .. md5):match("[^v]?%d+%.%d+%.%d+")
             else
                 local version = sys.exec("echo -n $(%s -version | awk '{print $2}' | sed -n 1P)" % file)
                 sys.call("echo '" .. version .. "' > " .. "/tmp/psw_" .. md5)
-                return version
+                return version:match("[^v]?%d+%.%d+%.%d+")
             end
         else
-            return sys.exec("echo -n $(%s -version | awk '{print $2}' | sed -n 1P)" % file)
+            return sys.exec("echo -n $(%s -version | awk '{print $2}' | sed -n 1P)" % file):match("[^v]?%d+%.%d+%.%d+")
         end
     end
     return ""
