@@ -35,6 +35,10 @@ function to_check(arch)
     end
 
     local json = api.get_api_json(trojan_go_api)
+    -- 如果json返回的是数组就使用第一个
+    if #json > 0 then
+        json = json[1]
+    end
 
     if json == nil or json.tag_name == nil then
         return {
