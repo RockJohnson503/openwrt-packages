@@ -23,13 +23,16 @@ start_instance() {
         config_get community "$cfg" 'community'
         config_get key "$cfg" 'key'
         config_get_bool route "$cfg" 'route' '0'
+        config_get compression "$cfg" 'compression'
         address="$ipaddr"
-        [ "$route" = "1" ] && args='-r'
+        [ "$route" = "1" ] && args='-r '
+        [ "$compression" = "lzo1x" ] && args="$args-z1 "
+        [ "$compression" = "zstd" ] && args="$args-z2 "
         [ "$mode" = 'dhcp' ] && address='0.0.0.0'
         [ "-$mtu" != "-" ] && mtu="-M $mtu"
         eval "$(ipcalc.sh "$ipaddr/$prefix")"
         netmask="$NETMASK"
-        /usr/bin/edge -u 0 -g 0 -p $udp_port -d $tunname -a ${mode}:${address} -s $netmask -c $community $([ -n "$key" ] && echo -k $key) -l ${supernode}:${port} $args $mtu
+        /usr/bin/edge -p $udp_port -d $tunname -a ${mode}:${address} -s $netmask -c $community $([ -n "$key" ] && echo -k $key) -l ${supernode}:${port} $mtu $args
       ;;
       supernode)
         config_get_bool enabled "$cfg" 'enabled' '0'

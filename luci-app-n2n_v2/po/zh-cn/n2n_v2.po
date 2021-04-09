@@ -41,6 +41,9 @@ msgstr "Supernode节点地址"
 msgid "N2N Community name"
 msgstr "N2N网络组名称"
 
+msgid "Compression methods"
+msgstr "压缩方式"
+
 msgid "Enable packet forwarding"
 msgstr "启用数据包转发"
 

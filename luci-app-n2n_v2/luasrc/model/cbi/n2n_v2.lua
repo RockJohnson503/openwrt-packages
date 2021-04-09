@@ -91,6 +91,11 @@ community.optional = false
 
 s:option(Value, "key", translate("Encryption key"))
 
+compression = s:option(ListValue, "compression", translate("Compression methods"))
+compression:value("off")
+compression:value("lzo1x")
+compression:value("zstd")
+
 route = s:option(Flag, "route", translate("Enable packet forwarding"))
 route.rmempty = false
 
