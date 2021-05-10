@@ -364,8 +364,8 @@ function compare_versions(ver1, comp, ver2)
     if (max < n2) then max = n2 end
 
     for i = 1, max, 1 do
-        local s1 = av1[i] or ""
-        local s2 = av2[i] or ""
+        local s1 = tonumber(av1[i] or "0") or av1[i]
+        local s2 = tonumber(av2[i] or "0") or av1[i]
 
         if comp == "~=" and (s1 ~= s2) then return true end
         if (comp == "<" or comp == "<=") and (s1 < s2) then return true end
